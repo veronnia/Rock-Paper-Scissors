@@ -12,49 +12,47 @@ const ask = (question) => new Promise(resolve => {
     });
 });
 
+const choiceToString = (choice) => {
+    if (choice === 1) return "rock";
+    if (choice === 2) return "paper";
+    if (choice === 3) return "scissors";
+    return "unknown";
+}
+
 const getComputerChoice = () => {
     let ans = Math.floor(Math.random() * 3) + 1;
-    let a = "";
-    if (ans == 1) {
-        a = "rock";
-    }
-    else if (ans == 2) {
-        a = "paper";
-    }
-    else {
-        a = "scissors";
-    }
-    console.log("ziggy chose: " + a);
     return ans;
 }
 
 const getHumanChoice = async () => {
     let ans = await ask("Enter 1: rock, 2; paper, 3: scissors: ");
-    if (ans == 1) {
-        a = "rock";
-    }
-    else if (ans == 2) {
-        a = "paper";
-    }
-    else {
-        a = "scissors";
-    }
-    console.log("you chose: " + a);
     return ans;
 } 
 
+//--------------------------------------------------------------------------------
 const playRound = (humanChoice, computerChoice) => {
-    if (humanChoice == computerChoice) {
+    console.log("_You: " + choiceToString(humanChoice));
+    console.log("_Ziggy: " + choiceToString(computerChoice));
+
+    if (humanChoice === computerChoice) {
         console.log("Draw!");
-        return 0;
-    }
-    if ((humanChoice == 3 && computerChoice == 1) || (humanChoice < computerChoice)) {
-        console.log("you lose and ziggy wins!");
-        computerScore++;
-    }
-    else {
-        console.log("you win and ziggy losses!");
         humanScore++;
+        computerScore++;
+        return;
+    }
+
+    const winConditions = {
+        1: 3,
+        2: 1,
+        3: 2
+    };
+
+    if (winConditions[humanChoice] === computerChoice) {
+        console.log("You win this round!");
+        humanScore++;
+    } else {
+        console.log("Ziggy wins this round!");
+        computerScore++;
     }
 
     return 0;
@@ -62,7 +60,7 @@ const playRound = (humanChoice, computerChoice) => {
 
 const playGame = async () => {
     for (let i = 1; i <= 5; i++){
-        console.log("Round: " + i);
+        console.log("____Round: " + i);
         let humanChoice = await getHumanChoice();
         let computerChoice = getComputerChoice();
 
@@ -70,16 +68,20 @@ const playGame = async () => {
 
         console.log('ziggy score: ' + computerScore);
         console.log('your score: ' + humanScore);
+        console.log("--------------------------------------------------");
     }
 
     readline.close();
 
     if (humanScore > computerScore) {
-        console.log('The ultimate winner is: YOU!');
+        console.log('The ultimate winner is: YOU!!!');
     }
-    else console.log('The ultimate winner is: ZIGGY!');
+    else if (humanScore < computerScore) {
+        console.log('The ultimate winner is: ZIGGY!!!');
+    }
+    else console.log('It ended with a draw!');
 };
-
+//---------------------------------------------------------------------------------------
 function main() {
     playGame();
 }
