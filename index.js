@@ -61,7 +61,7 @@ const playRound = (humanChoice, computerChoice) => {
 }
 
 const playGame = async () => {
-    for (let i = 0; i < 5; i++){
+    for (let i = 1; i <= 5; i++){
         console.log("Round: " + i);
         let humanChoice = await getHumanChoice();
         let computerChoice = getComputerChoice();
