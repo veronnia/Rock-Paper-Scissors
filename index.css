@@ -1,0 +1,122 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-image: url('images/scissors.png');
+    background-attachment: fixed;
+    background-size: 5% 10%;
+    background-color: beige;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3.5%;
+}
+
+.inner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 60%;
+    /*background-color: rgb(172, 138, 157);*/
+    background-color: rgb(171, 184, 169, 0.97); 
+    /*background-color: rgb(205, 76, 142, 0.95);*/
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.play {
+    color: rgb(255, 253, 239);
+    font-size: 50px;
+    font-weight: 900;
+    margin-bottom: 2px;
+}
+
+.five {
+    color: #F5F5DC;
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.scores {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 25%;
+    margin-bottom: 12px;
+}
+
+.player {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: rgb(255, 253, 239);
+
+}
+
+.pick {
+    color: rgb(255, 253, 239);
+    margin-bottom: 4px;
+
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 40%;
+}
+
+button {
+    width: 100px;
+    height: 40px;
+    border-radius: 3px;
+    border: none;
+    color: rgb(171, 184, 169); 
+    font-weight: 500;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(42, 46, 94, 0.1);
+    color: white;
+}
+
+button:active {
+    background-color: rgb(42, 46, 94, 0.5);
+}
+
+.choices {
+    color: rgb(255, 253, 239);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 40%;
+}
+
+h3 {
+    color: rgb(255, 253, 239);
+}
+
+img {
+    width: 150px;
+    height: auto;
+    margin: 0px;    
+}
+
+.beat {
+    margin-bottom: 12px;
+}
+
+#set {
+    width: 200px;
+}

@@ -1,22 +1,11 @@
 humanScore = 0;
 computerScore = 0;
 
-const readline = require("readline").createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
-
-const ask = (question) => new Promise(resolve => {
-    readline.question(question, (answer) => {
-        resolve(Number(answer));
-    });
-});
-
 const choiceToString = (choice) => {
     if (choice === 1) return "rock";
     if (choice === 2) return "paper";
     if (choice === 3) return "scissors";
-    return "unknown";
+    return "";
 }
 
 const getComputerChoice = () => {
@@ -24,20 +13,16 @@ const getComputerChoice = () => {
     return ans;
 }
 
-const getHumanChoice = async () => {
-    let ans = await ask("Enter 1: rock, 2; paper, 3: scissors: ");
-    return ans;
-} 
+function changeChoice(hChoice, cChoice) {
+    document.getElementById("zigChoice").innerText = choiceToString(cChoice);
+    document.getElementById("youChoice").innerText = choiceToString(hChoice);
+}
 
-//--------------------------------------------------------------------------------
 const playRound = (humanChoice, computerChoice) => {
-    console.log("_You: " + choiceToString(humanChoice));
-    console.log("_Ziggy: " + choiceToString(computerChoice));
+    changeChoice(humanChoice, computerChoice);    
 
     if (humanChoice === computerChoice) {
-        console.log("Draw!");
-        humanScore++;
-        computerScore++;
+        document.getElementById("round-win").innerText = "It's a draw!";
         return;
     }
 
@@ -48,42 +33,55 @@ const playRound = (humanChoice, computerChoice) => {
     };
 
     if (winConditions[humanChoice] === computerChoice) {
-        console.log("You win this round!");
         humanScore++;
+        document.getElementById("youScore").innerText = humanScore;
+        if (humanScore === 5) {
+            document.getElementById("round-win").innerText = "The ultimate winner is YOU!!!";
+            setEverything();
+            return 0;
+        }
+        document.getElementById("round-win").innerText = "You won this round!";
     } else {
-        console.log("Ziggy wins this round!");
         computerScore++;
+        document.getElementById("zigScore").innerText = computerScore;
+        if (computerScore === 5) {
+            document.getElementById("round-win").innerText = "The ultimate winner is ZIGGY!!!";
+            setEverything();
+            return 0;
+        }
+        document.getElementById("round-win").innerText = "Ziggy won this round!";
     }
 
-    return 0;
+    return;
 }
 
-const playGame = async () => {
-    for (let i = 1; i <= 5; i++){
-        console.log("____Round: " + i);
-        let humanChoice = await getHumanChoice();
-        let computerChoice = getComputerChoice();
+const playGame = (humanChoice) => { 
+    let computerChoice = getComputerChoice();
+    playRound(humanChoice, computerChoice);
 
-        playRound(humanChoice, computerChoice);
-
-        console.log('ziggy score: ' + computerScore);
-        console.log('your score: ' + humanScore);
-        console.log("--------------------------------------------------");
-    }
-
-    readline.close();
-
-    if (humanScore > computerScore) {
-        console.log('The ultimate winner is: YOU!!!');
-    }
-    else if (humanScore < computerScore) {
-        console.log('The ultimate winner is: ZIGGY!!!');
-    }
-    else console.log('It ended with a draw!');
-};
-//---------------------------------------------------------------------------------------
-function main() {
-    playGame();
 }
 
-main();
+const rockButton = document.getElementById('rockk');
+rockButton.addEventListener( 'click', () => {
+    if (humanScore < 5 && computerScore < 5) playGame(1);
+});
+
+const paperButton = document.getElementById('paperr');
+paperButton.addEventListener( 'click', () => {
+    if (humanScore < 5 && computerScore < 5) playGame(2);
+});
+
+const scissorsButton = document.getElementById('scissorss');
+scissorsButton.addEventListener( 'click', () => {
+    if (humanScore < 5 && computerScore < 5) playGame(3);
+});
+
+const setButton = document.getElementById('set');
+setButton.addEventListener( 'click', () => {
+    humanScore = 0;
+    computerScore = 0;
+    document.getElementById("zigScore").innerText = computerScore;
+    document.getElementById("youScore").innerText = humanScore;
+    document.getElementById("round-win").innerText = "Will you beat Ziggy";
+    changeChoice(4, 4);
+});

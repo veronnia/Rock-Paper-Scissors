@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">            
+        <div class="inner-container">
+            <p class="play">Play rock, paper, scissors with Ziggy</p>
+            <p class="five">First to get 5 points wins!</p>
+            <div class="scores">
+                <div class="player">
+                    <p>Ziggy's Score</p>
+                    <p id="zigScore">0</p>
+                </div>
+                <div class="player">
+                    <p>Your Score</p>
+                    <p id="youScore">0</p>
+                </div>
+            </div>
+            <h3 class="beat" id="round-win">Will you beat ziggy</h3>
+            <p class="pick">Click on the button you want to play</p>
+            <div class="buttons">
+                <button class="but1" id="rockk">Rock</button>
+                <button class="but2" id="paperr">Paper</button>
+                <button class="but3" id="scissorss">Scissors</button>
+            </div>
+            <div class="choices">
+                <div class="player">
+                    <p>Ziggy has chosen</p>
+                    <p id="zigChoice"></p>
+                </div>
+                <div class="player">
+                    <p>You have chosen</p>
+                    <p id="youChoice"></p>
+                </div>
+            </div>
+            <img src="images/ziggy.png" alt="ziggy">
+            <button id="set">Set everything back</button>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
